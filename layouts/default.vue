@@ -34,7 +34,7 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Alata", serif;
+  font-family: "Bebas Neue";
   font-weight: normal;
 }
 

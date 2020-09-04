@@ -9,6 +9,9 @@
       <li>
         <nuxt-link to="/about">About</nuxt-link>
       </li>
+      <li>
+        <nuxt-link to="/blog">Blog</nuxt-link>
+      </li>
     </ul>
   </div>
 </template>
@@ -18,8 +21,8 @@ import AppIcon from "@/components/AppIcon.vue";
 
 export default {
   components: {
-    AppIcon
-  }
+    AppIcon,
+  },
 };
 </script>
 
@@ -28,6 +31,21 @@ export default {
   background: #000;
   color: #fff;
   padding: 1em 100px;
+
+  ul {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  li:first-child {
+    font-family: "Bebas Neue";
+    font-size: 1.6rem;
+  }
+
+  li:nth-child(2) {
+    margin-left: auto;
+  }
 
   a {
     color: #fff;

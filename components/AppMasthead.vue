@@ -8,9 +8,9 @@
 export default {
   data() {
     return {
-      tagline: "Raisinlove"
+      tagline: "Raisinlove",
     };
-  }
+  },
 };
 </script>
 
@@ -52,7 +52,9 @@ section.masthead {
   color: #333;
   h1 {
     color: white;
-    @include fluid-type(font-size, 320px, 1366px, 30px, 65px);
+    font-size: 20vw;
+    text-shadow: 0 0 30px rgba(0, 0, 0, .7);
+    //@include fluid-type(font-size, 320px, 1366px, 30px, 65px);
   }
 }
 </style>
