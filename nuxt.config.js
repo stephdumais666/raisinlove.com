@@ -30,7 +30,7 @@ export default {
       {
         rel: "stylesheet",
         href:
-          "https://fonts.googleapis.com/css?family=Alata|Open+Sans&display=swap"
+          "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap"
       }
     ]
   },
