@@ -33,12 +33,8 @@
 </template>
 
 <script>
-import AppMasthead from "@/components/AppMasthead.vue";
 
 export default {
-  components: {
-    AppMasthead
-  },
   data() {
     return {
       selectedTag: null,
