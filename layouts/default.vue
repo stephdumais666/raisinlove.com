@@ -10,15 +10,15 @@ import AppNav from "~/components/AppNav.vue";
 
 export default {
   components: {
-    AppNav
-  }
+    AppNav,
+  },
 };
 </script>
 
 <style>
 html {
   font-family: "Open Sans", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -29,6 +29,7 @@ html {
 
 body {
   background-color: #fff;
+  padding-top: 50px;
 }
 
 h1,

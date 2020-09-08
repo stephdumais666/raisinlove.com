@@ -18,7 +18,10 @@ export default {
 @import "@/assets/mixins.scss";
 section.masthead {
   width: 100%;
-  height: 90vh;
+  height: 50vh;
+  @include mq(above-bp) {
+    height: 100vh;
+  }
   overflow: hidden;
   text-align: center;
   display: flex;
@@ -51,9 +54,10 @@ section.masthead {
   background-size: cover;
   color: #333;
   h1 {
+    opacity: 0.8;
     color: white;
     font-size: 20vw;
-    text-shadow: 0 0 30px rgba(0, 0, 0, .7);
+    text-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
     //@include fluid-type(font-size, 320px, 1366px, 30px, 65px);
   }
 }

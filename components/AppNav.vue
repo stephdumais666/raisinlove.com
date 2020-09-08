@@ -3,14 +3,18 @@
     <ul>
       <li>
         <nuxt-link exact to="/">
-          <app-icon></app-icon>Raisinlove
+          <app-icon></app-icon>
+          <span>Raisinlove</span>
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/about">About</nuxt-link>
+        <nuxt-link to="/about">about</nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/blog">Blog</nuxt-link>
+        <nuxt-link to="/blog">blog</nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/contact">contact</nuxt-link>
       </li>
     </ul>
   </div>
@@ -27,24 +31,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/mixins.scss";
+
 .nav {
+  position: fixed;
+  z-index: 10;
+  top: 0;
   background: #000;
   color: #fff;
-  padding: 1em 100px;
+  height: 50px;
+  padding: 0 20px;
 
   ul {
     width: 100%;
     display: flex;
     align-items: center;
+    @include mq(below-bp) {
+      justify-content: space-between;
+    }
   }
 
   li:first-child {
     font-family: "Bebas Neue";
     font-size: 1.6rem;
+
+    span {
+      @include mq(below-bp) {
+        display: none;
+      }
+    }
   }
 
   li:nth-child(2) {
-    margin-left: auto;
+    @include mq(above-bp) {
+      margin-left: auto;
+    }
   }
 
   a {
@@ -68,7 +89,10 @@ ul {
 
   li {
     display: inline-block;
-    margin-right: 30px;
+
+    @include mq(above-bp) {
+      margin-right: 30px;
+    }
   }
 }
 </style>

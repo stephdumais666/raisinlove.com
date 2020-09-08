@@ -1,78 +1,148 @@
 <template>
-  <div>
-    <app-masthead></app-masthead>
-    <div class="posts">
-      <main>
-        <div class="post" v-for="post in sortedPosts" :key="post.id">
-          <h3>
-            <a :href="`blog/${post.slug}`">{{ post.title.rendered }}</a>
-          </h3>
-          <small>{{ post.date | dateformat }}</small>
-          <div v-html="post.excerpt.rendered"></div>
-          <a :href="`blog/${post.slug}`" class="readmore slide">Read more ⟶</a>
-        </div>
-      </main>
-      <aside>
-        <h2 class="tags-title">Tags</h2>
-        <div class="tags-list">
-          <ul>
-            <li
-              @click="updateTag(tag)"
-              v-for="tag in tags"
-              :key="tag.id"
-              :class="[tag.id === selectedTag ? activeClass : '']"
-            >
-              <a>{{ tag.name }}</a>
-              <span v-if="tag.id === selectedTag">✕</span>
-            </li>
-          </ul>
-        </div>
-      </aside>
+  <div id="list-complete-demo" class="gallery">
+    <div class="subnav">
+      <ul>
+        <li>
+          <button v-on:click="filter('all')">All</button>
+        </li>
+        <li v-for="tag in illustrationtags" v-bind:key="tag.id">
+          <button v-on:click="filter(tag.id)">{{ tag.name }}</button>
+        </li>
+      </ul>
     </div>
+
+    <transition-group name="list-complete" class="list-complete" tag="section">
+      <div
+        v-for="illustration in filteredItems"
+        v-bind:key="illustration.id"
+        class="list-complete-item"
+      >      
+        <img
+          class="list-complete-img"
+          :src="illustration._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url"
+          alt
+        />
+      </div>
+    </transition-group>
   </div>
 </template>
 
 <script>
-import AppMasthead from "@/components/AppMasthead.vue";
-
 export default {
-  components: {
-    AppMasthead
-  },
   data() {
     return {
-      selectedTag: null,
-      activeClass: "active"
+      activeClass: "active",
+      currentTag: "all",
     };
   },
   computed: {
-    posts() {
-      return this.$store.state.posts;
+    illustrations() {
+      return this.$store.state.illustrations;
     },
-    tags() {
-      return this.$store.state.tags;
+    illustrationtags() {
+      return this.$store.state.illustrationtags;
     },
-    sortedPosts() {
-      if (!this.selectedTag) return this.posts;
-      return this.posts.filter(el => el.tags.includes(this.selectedTag));
-    }
+    filteredItems: function () {
+      var filter = this.currentTag;
+      if (this.currentTag === "all") return this.illustrations;
+      return this.illustrations.filter((el) =>
+        el.illustrationtags.includes(this.currentTag)
+      );
+     
+    },
   },
   created() {
-    this.$store.dispatch("getPosts");
+    this.$store.dispatch("getIllustrations");
+    this.$store.dispatch("getIllustrationTags");
   },
   methods: {
-    updateTag(tag) {
-      if (!this.selectedTag) {
-        this.selectedTag = tag.id;
-      } else {
-        this.selectedTag = null;
-      }
-    }
-  }
+    filter: function (tag) {
+      this.currentTag = tag;
+    },
+  },
 };
 </script>
 
 <style lang="scss">
+@import "@/assets/mixins.scss";
+
+.subnav {
+  position: fixed;
+  z-index: 10;
+  top: 50px;
+  background: rgba($color: #000000, $alpha: 0.5);
+  color: #fff;
+  padding: 0 20px;
+  width: 100%;
+
+  ul {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-left: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    @include mq(above-bp) {
+      justify-content: flex-end;
+    }
+
+    li {
+      display: inline-flex;
+      align-items: center;
+      height: 30px;
+
+      @include mq(above-bp) {
+        margin-right: 30px;
+      }
+    }
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    color: #fff;
+    opacity: 0.8;
+    font-size: 16px;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.list-complete {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.list-complete-item {
+  transition: transform 1s;
+  flex: 1 1 25%;
+  height: 200px;
+  padding: 0px;
+
+  /*   display: inline-block;
+  margin-right: 10px; */
+}
+.list-complete-img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.list-complete-enter, .list-complete-leave-to
+/* .list-complete-leave-active for <2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-complete-leave-active {
+  position: absolute;
+}
+
 .posts {
   display: grid;
   grid-template-columns: 2fr 1fr;

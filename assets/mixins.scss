@@ -1,3 +1,18 @@
+@mixin mq($bp){
+  
+  @if ($bp == below-bp) {
+    @media (max-width: 479px) { 
+        @content;
+    }
+  }  
+
+  @if ($bp == above-bp) {
+    @media (min-width: 480px) { 
+        @content;
+    }
+  }  
+}
+
 @mixin fluid-type($properties, $min-vw, $max-vw, $min-value, $max-value) {
   @each $property in $properties {
     #{$property}: $min-value;
