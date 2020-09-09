@@ -1,9 +1,38 @@
 <template>
   <div id="list-complete-demo" class="gallery">
+    <div class="lightbox" v-on:click="close()">
+      <figure class="closeicon">
+        <svg
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 252 252"
+          style="enable-background:new 0 0 252 252;"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              d="M126,0C56.523,0,0,56.523,0,126s56.523,126,126,126s126-56.523,126-126S195.477,0,126,0z M126,234
+		c-59.551,0-108-48.449-108-108S66.449,18,126,18s108,48.449,108,108S185.551,234,126,234z"
+            />
+            <path
+              d="M164.612,87.388c-3.515-3.515-9.213-3.515-12.728,0L126,113.272l-25.885-25.885c-3.515-3.515-9.213-3.515-12.728,0
+		c-3.515,3.515-3.515,9.213,0,12.728L113.272,126l-25.885,25.885c-3.515,3.515-3.515,9.213,0,12.728
+		c1.757,1.757,4.061,2.636,6.364,2.636s4.606-0.879,6.364-2.636L126,138.728l25.885,25.885c1.757,1.757,4.061,2.636,6.364,2.636
+		s4.606-0.879,6.364-2.636c3.515-3.515,3.515-9.213,0-12.728L138.728,126l25.885-25.885
+		C168.127,96.601,168.127,90.902,164.612,87.388z"
+            />
+          </g>
+        </svg>
+      </figure>
+    </div>
     <div class="subnav">
       <ul>
         <li>
-          <button v-on:click="filter('all')">All</button>
+          <button autofocus v-on:click="filter('all')">All</button>
         </li>
         <li v-for="tag in illustrationtags" v-bind:key="tag.id">
           <button v-on:click="filter(tag.id)">{{ tag.name }}</button>
@@ -18,6 +47,7 @@
         class="list-complete-item"
       >
         <div
+          v-on:click="lightbox(illustration._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url )"
           :class="illustrationformat(illustration)"
           :style="{'background-image': 'url(' 
           + illustration._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url 
@@ -55,6 +85,19 @@ export default {
     this.$store.dispatch("getIllustrationTags");
   },
   methods: {
+    lightbox: function (image) {
+      var lightbox = document.querySelector(".lightbox");
+      var img = new Image();
+      img.onload = function () {
+        lightbox.setAttribute("style", "background-image:url(" + image + ")");
+        lightbox.classList.add("open");
+      };
+      img.src = image;
+    },
+    close: function (image) {
+      var lightbox = document.querySelector(".lightbox");
+      lightbox.classList.remove("open");
+    },
     filter: function (tag) {
       this.currentTag = tag;
     },
@@ -86,22 +129,65 @@ export default {
 <style lang="scss">
 @import "@/assets/mixins.scss";
 
+.lightbox {
+  height: 1px;
+  overflow: hidden;
+  cursor: pointer;
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: rgba(0, 0, 0, 0.9);
+  transition: opacity 300ms ease-in-out 100ms;
+  opacity: 0;
+  &.open {
+    display: block;
+    height: 100vh;
+    bottom: 0;
+    opacity: 1;
+  }
+}
+
+.closeicon {
+  width: 30px;
+  height: 30px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  
+  path {
+    fill: #fff;
+    box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.75);
+  }
+}
+
 .subnav {
   color: #fff;
   padding: 0 20px;
   width: 100%;
-  transition: opacity 500ms;
+  transition: all 500ms;
 
   @include mq(above-bp) {
     position: fixed;
     z-index: 10;
     top: 50px;
-    background: rgba(0, 0, 0, 0.8);
-    opacity: 0.5;
-  }
+    background: rgba(0, 0, 0, 0);
 
-  &:hover {
-    opacity: 1;
+    li button:not(:focus) {
+      opacity: 0.4;
+    }
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.8);
+
+      li button:not(:focus) {
+        opacity: 1;
+      }
+    }
   }
 
   ul {
@@ -122,31 +208,37 @@ export default {
     li {
       display: inline-flex;
       align-items: center;
-      height: 30px;
       outline: none !important;
       @include mq(above-bp) {
+        height: 30px;
         margin-right: 7px;
       }
     }
   }
 
   button {
-    background: #111;
+    background: #333;
     padding: 5px 10px;
     border-radius: 3px;
     border: none;
-    color: #ccc;
+    color: #aaa;
     font-size: 13px;
     letter-spacing: 1px;
     cursor: pointer;
     outline: none !important;
+    margin: 3px;
+
+    @include mq(above-bp) {
+      background: #111;
+      margin: 0;
+    }
 
     &:hover {
       background: #000;
     }
 
     &:focus {
-      background: #444;
+      background: #000;
       color: #fff;
       text-shadow: 0px 0px 5px #000000;
     }
@@ -193,6 +285,7 @@ export default {
   background-size: cover;
   background-position: center;
   width: 100%;
+  cursor: pointer;
 
   &.list-complete-img--vertical {
     @include keep-ratio("22/34");
