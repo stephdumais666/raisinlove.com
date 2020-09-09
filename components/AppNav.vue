@@ -43,6 +43,7 @@ export default {
   padding: 0 20px;
 
   ul {
+    padding-left: 0;
     width: 100%;
     display: flex;
     align-items: center;
@@ -51,11 +52,27 @@ export default {
     }
   }
 
+  li {
+    display: inline-block;
+
+    @include mq(above-bp) {
+      margin-right: 30px;
+    }
+  }
+
+  li:last-child {
+    @include mq(above-bp) {
+      margin-right: 10px;
+    }
+  }
+
   li:first-child {
     font-family: "Bebas Neue";
     font-size: 1.6rem;
 
     span {
+      position: relative;
+      top: 2px;
       @include mq(below-bp) {
         display: none;
       }
@@ -82,17 +99,5 @@ div {
   display: flex;
   height: 100%;
   width: 100%;
-}
-
-ul {
-  padding-left: 0;
-
-  li {
-    display: inline-block;
-
-    @include mq(above-bp) {
-      margin-right: 30px;
-    }
-  }
 }
 </style>

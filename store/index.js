@@ -88,7 +88,9 @@ export const actions = {
           title,
           illustrationtags,
           _embedded
-        }))
+        })).sort( () => Math.random() - 0.5) //randomize output
+
+
 
       commit("updateIllustrations", illustrations)
     } catch (err) {

@@ -16,12 +16,13 @@
         v-for="illustration in filteredItems"
         v-bind:key="illustration.id"
         class="list-complete-item"
-      >      
-        <img
-          class="list-complete-img"
-          :src="illustration._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url"
-          alt
-        />
+      >
+        <div
+          :class="illustrationformat(illustration)"
+          :style="{'background-image': 'url(' 
+          + illustration._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url 
+          + ')'}"
+        ></div>
       </div>
     </transition-group>
   </div>
@@ -48,7 +49,6 @@ export default {
       return this.illustrations.filter((el) =>
         el.illustrationtags.includes(this.currentTag)
       );
-     
     },
   },
   created() {
@@ -58,6 +58,27 @@ export default {
   methods: {
     filter: function (tag) {
       this.currentTag = tag;
+    },
+    illustrationformat: function (illustration) {
+      let illusWidth =
+        illustration._embedded["wp:featuredmedia"][0].media_details.width;
+      let illusHeight =
+        illustration._embedded["wp:featuredmedia"][0].media_details.height;
+      let formatClass = "list-complete-img";
+
+      if (illusWidth == illusHeight) {
+        formatClass = formatClass + " list-complete-img--square";
+      } else {
+        if (illusWidth > illusHeight) {
+          formatClass = formatClass + " list-complete-img--horizontal";
+        }
+
+        if (illusWidth < illusHeight) {
+          formatClass = formatClass + " list-complete-img--vertical";
+        }
+      }
+
+      return formatClass;
     },
   },
 };
@@ -70,7 +91,7 @@ export default {
   position: fixed;
   z-index: 10;
   top: 50px;
-  background: rgba($color: #000000, $alpha: 0.5);
+  background: rgba(0, 0, 0, 0.8);
   color: #fff;
   padding: 0 20px;
   width: 100%;
@@ -94,22 +115,32 @@ export default {
       display: inline-flex;
       align-items: center;
       height: 30px;
-
+      outline: none !important;
       @include mq(above-bp) {
-        margin-right: 30px;
+        margin-right: 7px;
       }
     }
   }
 
   button {
-    background: transparent;
+    background: #111;
+    padding: 5px 10px;
+    border-radius: 3px;
     border: none;
-    color: #fff;
-    opacity: 0.8;
-    font-size: 16px;
+    color: #ccc;
+    font-size: 13px;
+    letter-spacing: 1px;
     cursor: pointer;
+    outline: none !important;
+
     &:hover {
-      opacity: 1;
+      background: #000;
+    }
+
+    &:focus {
+      background: #444;
+      color: #fff;
+      text-shadow: 0px 0px 5px #000000;
     }
   }
 }
@@ -123,16 +154,27 @@ export default {
 .list-complete-item {
   transition: transform 1s;
   flex: 1 1 25%;
-  height: 200px;
   padding: 0px;
 
   /*   display: inline-block;
   margin-right: 10px; */
 }
 .list-complete-img {
-  object-fit: cover;
-  height: 100%;
+  background-size: cover;
+  background-position: center;
   width: 100%;
+
+  &.list-complete-img--vertical {
+    @include keep-ratio("22/34");
+  }
+
+  &.list-complete-img--horizontal {
+    @include keep-ratio("34/22");
+  }
+
+  &.list-complete-img--square {
+    @include keep-ratio("1/1");
+  }
 }
 .list-complete-enter, .list-complete-leave-to
 /* .list-complete-leave-active for <2.1.8 */ {
