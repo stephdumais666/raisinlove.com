@@ -7,7 +7,7 @@
           <span>Raisinlove</span>
         </nuxt-link>
       </li>
-      <li>
+      <!--li>
         <nuxt-link to="/about">about</nuxt-link>
       </li>
       <li>
@@ -15,7 +15,7 @@
       </li>
       <li>
         <nuxt-link to="/contact">contact</nuxt-link>
-      </li>
+      </li-->
     </ul>
   </div>
 </template>

@@ -77,7 +77,7 @@ export const actions = {
 
     try {
       let illustrations = await fetch(
-        `${siteURL}/wp-json/wp/v2/illustrations?page=1&per_page=20&_embed=1`
+        `${siteURL}/wp-json/wp/v2/illustrations?page=1&per_page=100&_embed=1`
       ).then(res => res.json())
 
       illustrations = illustrations
@@ -108,7 +108,7 @@ export const actions = {
 
     try {
       let illustrationtags = await fetch(
-        `${siteURL}/wp-json/wp/v2/illustrationtags?page=1&per_page=40&include=${allTags}`
+        `${siteURL}/wp-json/wp/v2/illustrationtags?page=1&hide_empty=true&per_page=40&include=${allTags}`
       ).then(res => res.json())
 
       illustrationtags = illustrationtags

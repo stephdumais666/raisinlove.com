@@ -44,7 +44,6 @@ export default {
       return this.$store.state.illustrationtags;
     },
     filteredItems: function () {
-      var filter = this.currentTag;
       if (this.currentTag === "all") return this.illustrations;
       return this.illustrations.filter((el) =>
         el.illustrationtags.includes(this.currentTag)
@@ -88,20 +87,29 @@ export default {
 @import "@/assets/mixins.scss";
 
 .subnav {
-  position: fixed;
-  z-index: 10;
-  top: 50px;
-  background: rgba(0, 0, 0, 0.8);
   color: #fff;
   padding: 0 20px;
   width: 100%;
+  transition: opacity 500ms;
+
+  @include mq(above-bp) {
+    position: fixed;
+    z-index: 10;
+    top: 50px;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0.5;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
 
   ul {
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     padding-left: 0;
     padding-top: 10px;
@@ -146,19 +154,41 @@ export default {
 }
 
 .list-complete {
-  display: flex;
   width: 100%;
-  flex-direction: row;
-  flex-wrap: wrap;
+  border: 2.5px solid #fff;
+
+  @include mq(above-bp) {
+    column-gap: 0;
+    column-count: 2;
+    column-width: 130px;
+  }
+
+  @include mq(above-600px) {
+    column-count: 3;
+  }
+
+  @include mq(above-900px) {
+    column-count: 4;
+  }
+
+  @include mq(above-1200px) {
+    column-count: 5;
+  }
+
+  @include mq(above-1600px) {
+    column-count: 8;
+  }
 }
+
 .list-complete-item {
   transition: transform 1s;
-  flex: 1 1 25%;
   padding: 0px;
-
-  /*   display: inline-block;
-  margin-right: 10px; */
+  border: 5px solid #fff;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
+
 .list-complete-img {
   background-size: cover;
   background-position: center;
