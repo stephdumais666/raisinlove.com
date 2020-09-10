@@ -7,10 +7,10 @@
           <span>Raisinlove</span>
         </nuxt-link>
       </li>
-      <!--li>
+      <li>
         <nuxt-link to="/about">about</nuxt-link>
       </li>
-      <li>
+      <!--li>
         <nuxt-link to="/blog">blog</nuxt-link>
       </li>
       <li>

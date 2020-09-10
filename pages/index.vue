@@ -1,6 +1,7 @@
 <template>
   <div id="list-complete-demo" class="gallery">
     <div class="lightbox" v-on:click="close()">
+      <h2 class="lightbox__title"></h2>
       <figure class="closeicon">
         <svg
           version="1.1"
@@ -45,13 +46,15 @@
         v-for="illustration in filteredItems"
         v-bind:key="illustration.id"
         class="list-complete-item"
+        :ref="'i-'+illustration.id"
       >
         <div
-          v-on:click="lightbox(illustration._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url )"
+          v-on:click="lightbox(
+            illustration._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url,
+            illustration.title.rendered 
+            )"
           :class="illustrationformat(illustration)"
-          :style="{'background-image': 'url(' 
-          + illustration._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url 
-          + ')'}"
+          :style="'background-image:url('+illustration._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url+')'"
         ></div>
       </div>
     </transition-group>
@@ -85,9 +88,13 @@ export default {
     this.$store.dispatch("getIllustrationTags");
   },
   methods: {
-    lightbox: function (image) {
+    lightbox: function (image, title) {
       var lightbox = document.querySelector(".lightbox");
+      var lightbox__title = document.querySelector(".lightbox__title");
       var img = new Image();
+
+      lightbox__title.innerText = title;
+
       img.onload = function () {
         lightbox.setAttribute("style", "background-image:url(" + image + ")");
         lightbox.classList.add("open");
@@ -152,13 +159,24 @@ export default {
   }
 }
 
+.lightbox__title {
+  position: relative;
+  z-index: 19;
+  background: #000;
+  color: #fff;
+  display: inline-block;
+  padding: 12px 20px 5px;
+  font-family: Bebas Neue;
+  font-size: 1.6rem;
+}
+
 .closeicon {
   width: 30px;
   height: 30px;
   position: fixed;
-  top: 20px;
+  top: 12px;
   right: 20px;
-  
+
   path {
     fill: #fff;
     box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.75);
@@ -286,6 +304,8 @@ export default {
   background-position: center;
   width: 100%;
   cursor: pointer;
+  //opacity: 0;
+  transition: opacity 1s;
 
   &.list-complete-img--vertical {
     @include keep-ratio("22/34");
