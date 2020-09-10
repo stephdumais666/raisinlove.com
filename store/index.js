@@ -90,8 +90,6 @@ export const actions = {
           _embedded
         })).sort( () => Math.random() - 0.5) //randomize output
 
-
-
       commit("updateIllustrations", illustrations)
     } catch (err) {
       console.log(err)

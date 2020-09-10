@@ -30,13 +30,13 @@
         </svg>
       </figure>
     </div>
-    <div class="subnav">
+    <div class="subnav filters">
       <ul>
         <li>
           <button autofocus v-on:click="filter('all')">All</button>
         </li>
         <li v-for="tag in illustrationtags" v-bind:key="tag.id">
-          <button v-on:click="filter(tag.id)">{{ tag.name }}</button>
+          <button :class="'filters__'+tag.name" v-on:click="filter(tag.id)">{{ tag.name }}</button>
         </li>
       </ul>
     </div>
@@ -67,6 +67,7 @@ export default {
     return {
       activeClass: "active",
       currentTag: "all",
+      message: "not updated",
     };
   },
   computed: {
@@ -77,7 +78,9 @@ export default {
       return this.$store.state.illustrationtags;
     },
     filteredItems: function () {
-      if (this.currentTag === "all") return this.illustrations;
+      if (this.currentTag === "all") {
+        return this.illustrations;
+      }
       return this.illustrations.filter((el) =>
         el.illustrationtags.includes(this.currentTag)
       );
@@ -107,6 +110,7 @@ export default {
     },
     filter: function (tag) {
       this.currentTag = tag;
+      this.updateHash(tag);
     },
     illustrationformat: function (illustration) {
       let illusWidth =
@@ -129,12 +133,35 @@ export default {
 
       return formatClass;
     },
+    tagid: function (tag) {
+      var tag = tag.substring(1);
+      var tagid;
+      return tag;
+      //.find((x) => x.name === tagid).id;
+    },
+    tagname: function (tag) {
+      if (tag != "all") {
+        tag =
+          "#" +
+          this.$store.state.illustrationtags.find((x) => x.id === tag).name;
+      } else {
+        tag = "";
+      }
+      return tag;
+    },
+    updateHash: function (tag) {
+      history.pushState({}, null, this.$route.path + this.tagname(tag));
+    },
   },
 };
 </script>
 
 <style lang="scss">
 @import "@/assets/mixins.scss";
+
+.red {
+  border: 5px solid red;
+}
 
 .lightbox {
   height: 1px;
@@ -270,7 +297,7 @@ export default {
   @include mq(above-bp) {
     column-gap: 0;
     column-count: 2;
-    column-width: 130px;
+    column-width: 200px;
   }
 
   @include mq(above-600px) {
@@ -287,6 +314,10 @@ export default {
 
   @include mq(above-1600px) {
     column-count: 8;
+  }
+
+  @include mq(above-1900px) {
+    column-count: 9;
   }
 }
 
