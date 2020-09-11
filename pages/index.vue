@@ -1,7 +1,12 @@
 <template>
   <div id="list-complete-demo" class="gallery">
     <div id="lightbox" class="lightbox">
-      <div class="lightbox__close" v-on:click="close()"></div>
+      <div
+        class="lightbox__close"
+        v-touch:swipe.left="swipebox('prev')"
+        v-touch:swipe.right="swipebox('next')"
+        v-on:click="close()"
+      ></div>
       <div class="lightbox__prev" v-on:click="slidebox('prev')">
         <svg
           version="1.1"
@@ -113,7 +118,7 @@
           :data-illustrationindex="illustration.id"
           :class="thumbnailclasses(illustration)"
           :style="'background-image:url('+
-          illustration._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url
+          illustration._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url
           +')'"
         >
           <div class="list-complete-item__loader"></div>
@@ -247,6 +252,9 @@ export default {
       setTimeout(function () {
         lightbox.classList.remove("slide");
       }, 500);
+    },
+    swipebox: function (direction) {
+      alert(direction);
     },
     close: function (image) {
       var lightbox = document.querySelector(".lightbox");

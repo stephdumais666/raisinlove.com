@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vue2-touch-events": "^2.3.2"
   },
   "devDependencies": {
     "node-sass": "^4.12.0",
