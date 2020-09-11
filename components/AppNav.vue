@@ -33,6 +33,10 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/mixins.scss";
 
+a {
+  text-decoration: none !important;
+}
+
 .nav {
   position: fixed;
   z-index: 10;
@@ -88,6 +92,10 @@ export default {
   a {
     color: #fff;
     opacity: 0.8;
+    display: block;
+    width: 100%;
+    padding:10px;
+    text-decoration: none;
     &:hover {
       opacity: 1;
     }
