@@ -37,9 +37,19 @@ a {
   text-decoration: none !important;
 }
 
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .nav {
+  animation: 1s ease-out 100ms 1 slideInFromTop;
   position: fixed;
-  z-index: 10;
+  z-index: 50;
   top: 0;
   background: #000;
   color: #fff;
@@ -94,7 +104,7 @@ a {
     opacity: 0.8;
     display: block;
     width: 100%;
-    padding:10px;
+    padding: 10px;
     text-decoration: none;
     &:hover {
       opacity: 1;

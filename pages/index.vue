@@ -2,8 +2,60 @@
   <div id="list-complete-demo" class="gallery">
     <div id="lightbox" class="lightbox">
       <div class="lightbox__close" v-on:click="close()"></div>
-      <div class="lightbox__prev" v-on:click="slidebox('prev')"></div>
-      <div class="lightbox__next" v-on:click="slidebox('next')"></div>
+      <div class="lightbox__prev" v-on:click="slidebox('prev')">
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 194 189"
+          style="enable-background:new 0 0 194 189;"
+          xml:space="preserve"
+        >
+          <g id="Layer_1" />
+          <g id="Layer_2">
+            <path
+              id="XMLID_17_"
+              d="M165,0H29C13,0,0,13,0,29v131c0,16,13,29,29,29h136c16,0,29-13,29-29V29C194,13,181,0,165,0z M43.5,154.2
+		c-4.4,0-8-3.6-8-8V34.7c0-4.4,3.6-8,8-8H159c4.4,0,8,3.6,8,8v111.5c0,4.4-3.6,8-8,8H43.5z M25.6,8.3l12.6,11.3
+		C33.2,21.3,29.2,25.6,28,31L8.2,26.3C9.4,17.1,16.5,9.8,25.6,8.3z M8,160v-4.9l19.8-6c1.4,7.4,7.9,13.1,15.7,13.1h1L35.5,181H29
+		C17.4,181,8,171.6,8,160z M168.1,180.7l-10.9-18.6h1.8c6.6,0,12.2-4,14.7-9.6l12.1,10.2C184.6,172,177.3,179.4,168.1,180.7z"
+            />
+            <polygon
+              id="XMLID_11_"
+              points="151,82.2 102.3,82.2 102.3,61.8 49.5,89.4 102.3,117 102.3,96.6 151,96.6 	"
+            />
+          </g>
+        </svg>
+      </div>
+      <div class="lightbox__next" v-on:click="slidebox('next')">
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 194 189"
+          style="enable-background:new 0 0 194 189;"
+          xml:space="preserve"
+        >
+          <g id="Layer_1" />
+          <g id="Layer_2">
+            <path
+              id="XMLID_17_"
+              d="M165,0H29C13,0,0,13,0,29v131c0,16,13,29,29,29h136c16,0,29-13,29-29V29C194,13,181,0,165,0z M43.5,154.2
+		c-4.4,0-8-3.6-8-8V34.7c0-4.4,3.6-8,8-8H159c4.4,0,8,3.6,8,8v111.5c0,4.4-3.6,8-8,8H43.5z M25.6,8.3l12.6,11.3
+		C33.2,21.3,29.2,25.6,28,31L8.2,26.3C9.4,17.1,16.5,9.8,25.6,8.3z M8,160v-4.9l19.8-6c1.4,7.4,7.9,13.1,15.7,13.1h1L35.5,181H29
+		C17.4,181,8,171.6,8,160z M168.1,180.7l-10.9-18.6h1.8c6.6,0,12.2-4,14.7-9.6l12.1,10.2C184.6,172,177.3,179.4,168.1,180.7z"
+            />
+            <polygon
+              id="XMLID_11_"
+              points="49.5,96.6 98.3,96.6 98.3,117 151,89.4 98.3,61.8 98.3,82.2 49.5,82.2 	"
+            />
+          </g>
+        </svg>
+      </div>
       <h2 class="lightbox__title"></h2>
       <figure class="closeicon">
         <svg
@@ -33,16 +85,16 @@
         </svg>
       </figure>
     </div>
-    <div class="subnav filters">
+    <nav class="subnav filters">
       <ul>
         <li>
-          <button autofocus v-on:click="filter('all')">All</button>
+          <button v-on:click="filter('all')">all</button>
         </li>
         <li v-for="tag in illustrationtags" v-bind:key="tag.id">
           <button :class="'filters__'+tag.name" v-on:click="filter(tag.id)">{{ tag.name }}</button>
         </li>
       </ul>
-    </div>
+    </nav>
 
     <transition-group name="list-complete" class="list-complete" tag="section">
       <div
@@ -56,11 +108,16 @@
             illustration._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url,
             illustration.title.rendered, index+1, filteredItems.length  
             )"
+          :ref="'image-'+illustration.id"
           :data-index="index+1"
           :data-illustrationindex="illustration.id"
-          :class="illustrationformat(illustration)"
-          :style="'background-image:url('+illustration._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url+')'"
-        ></div>
+          :class="thumbnailclasses(illustration)"
+          :style="'background-image:url('+
+          illustration._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url
+          +')'"
+        >
+          <div class="list-complete-item__loader"></div>
+        </div>
       </div>
     </transition-group>
   </div>
@@ -99,7 +156,6 @@ export default {
     var left = document.querySelector(".lightbox__prev");
     var right = document.querySelector(".lightbox__next");
     var close = document.querySelector(".lightbox__close");
-
     window.addEventListener("keydown", (e) => {
       if (lightbox.classList.contains("open")) {
         if (e.keyCode === 37) {
@@ -120,14 +176,28 @@ export default {
       var lightbox__title = lightbox.querySelector(".lightbox__title");
       var lightbox__prev = lightbox.querySelector(".lightbox__prev");
       var lightbox__next = lightbox.querySelector(".lightbox__next");
+      var lightbox__close = lightbox.querySelector(".lightbox__close");
+      var thumbnail = document.querySelector(
+        '.list-complete-img[data-index="' + index + '"]'
+      );
       var img = new Image();
 
+      thumbnail.classList.add("loading");
       lightbox.setAttribute("data-index", index);
       lightbox__title.innerText = title;
+      lightbox__close.classList.add("loading");
 
       img.onload = function () {
-        lightbox.setAttribute("style", "background-image:url(" + image + ")");
-        lightbox.classList.add("open");
+        lightbox__close.setAttribute(
+          "style",
+          "background-image:url(" + image + ")"
+        );
+        thumbnail.classList.remove("loading");
+
+        setTimeout(function () {
+          lightbox__close.classList.remove("loading");
+          lightbox.classList.add("open");
+        }, 500);
       };
       img.src = image;
     },
@@ -138,11 +208,11 @@ export default {
       var currentindex = parseInt(lightbox.dataset.index);
       var newindex;
 
-      //lightbox.classList.add("slide");
+      lightbox.classList.add("slide");
 
       if (direction === "prev") {
         if (currentindex - 1 === 0) {
-          newindex = currentindex;
+          newindex = total;
         } else {
           newindex = currentindex - 1;
         }
@@ -150,7 +220,7 @@ export default {
 
       if (direction === "next") {
         if (currentindex + 1 === total + 1) {
-          newindex = currentindex;
+          newindex = 1;
         } else {
           newindex = currentindex + 1;
         }
@@ -174,11 +244,9 @@ export default {
         }
       });
 
-      /*
-      setInterval(function () {
+      setTimeout(function () {
         lightbox.classList.remove("slide");
-      }, 1000);
-      */
+      }, 500);
     },
     close: function (image) {
       var lightbox = document.querySelector(".lightbox");
@@ -189,12 +257,15 @@ export default {
       this.currentTag = tag;
       //this.updateHash(tag);
     },
-    illustrationformat: function (illustration) {
+    thumbnailclasses: function (illustration) {
       let illusWidth =
         illustration._embedded["wp:featuredmedia"][0].media_details.width;
       let illusHeight =
         illustration._embedded["wp:featuredmedia"][0].media_details.height;
-      let formatClass = "list-complete-img";
+      let formatClass = "list-complete-img preloading";
+      let image =
+        illustration._embedded["wp:featuredmedia"][0].media_details.sizes.full
+          .source_url;
 
       if (illusWidth == illusHeight) {
         formatClass = formatClass + " list-complete-img--square";
@@ -208,6 +279,18 @@ export default {
         }
       }
 
+      let img = new Image();
+      img.onload = function () {
+        var thumbnail = document.querySelector(
+          'div.list-complete-img[data-illustrationindex="' +
+            illustration.id +
+            '"]'
+        );
+        if (thumbnail) {
+          thumbnail.classList.remove("preloading");
+        }
+      };
+      img.src = image;
       return formatClass;
     },
     tagid: function (tag) {
