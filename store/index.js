@@ -1,8 +1,3 @@
-import Vue from 'vue'
-import Vue2TouchEvents from 'vue2-touch-events'
- 
-Vue.use(Vue2TouchEvents)
-
 const siteURL = "https://admin.raisinlove.com"
 
 export const state = () => ({
