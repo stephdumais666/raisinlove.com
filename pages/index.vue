@@ -3,8 +3,6 @@
     <div id="lightbox" class="lightbox">
       <div 
       class="lightbox__close" 
-      v-hammer:swipe.left="swipebox('prev')"
-      v-hammer:swipe.right="swipebox('next')"
       v-on:click="close()"></div>
       <div class="lightbox__prev" v-on:click="slidebox('prev')">
         <svg

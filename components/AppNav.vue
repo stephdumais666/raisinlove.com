@@ -12,10 +12,10 @@
       </li>
       <!--li>
         <nuxt-link to="/blog">blog</nuxt-link>
-      </li>
+      </li-->
       <li>
         <nuxt-link to="/contact">contact</nuxt-link>
-      </li-->
+      </li>
     </ul>
   </div>
 </template>

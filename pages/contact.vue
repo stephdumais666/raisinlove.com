@@ -1,38 +1,200 @@
 <template>
-  <div class="about">
-    <h1>About Steph Dumais</h1>
-    <p>Steph Dumais is an illustrator, underground horror comix publisher and Web Developper based in the Montreal area.</p>
-    <p>His professional career started in graphic design before moving on to web development, but has consistently freelanced in design and illustration since 1998.</p>
-    <p>For more than a decade, he was very active within the industrial/gothic scene, designing album covers and merchandise for bands. He was very involved with labels such as Calgary's Gashed! Records. Later on, he focused much of his work for the rave and hardcore scenes. In more recent years, his music oriented gigs have encompassed a wider array of genres.</p>
-    <p>Over the years he has created multiple comics, including the long running <a href="https://bloodygorecomix.com/search?q=zombie+commandos" target="_blank">Zombie Commandos From Hell</a> series, set in a post-apocalypstic Canada where demons from hell have taken over dead human bodies to wage war on mankind.</p>
-    <p>His work has been published in multiple magazines and comic anthologies but his highest profile work has been his contributions to multiple issues of Mirage's Tales of the TMNT, including a <a href="https://www.miragelicensing.com/comics/mirage/talesvol2/41/41.html" target="_blank">full issue</a>. He has also illustrated Douglas Rushkoff's first graphic novel, <a href="https://rushkoff.com/books/club-zero-g/" target="_blank">Club Zero-G</a>.</p>
-    <p>In 2012, he founded <a href="http://www.bloodygorecomix.com" target="_blank">Bloody Gore Comix</a> as vehicle for publishing his own series as well as an entire roster of like minded creators. BGC focuses on extreme graphic horror comics.</p>
-    <p>In 2019, with his friend Jason Mulligan, he created the <a href="https://www.kickstarter.com/projects/bloodygorecomix/zombie-commandos-from-hell-extermination" target="_blank">ZCFH: Extermination</a> card game, based on his comic series. This is his second successful crowdfunding campaign, following the funding of the <a href="https://www.kickstarter.com/projects/bloodygorecomix/bloody-gore-comix-2018-anthology?ref=user_menu" target="_blank">second BGC Anthology</a>.</p>
-    <p>He makes regular appearances in small press fairs, comic conventions and horror events in Canada each year to promote his work and the BGC catalog and hopes to participate in more events across the border.</p>
-    <p>He is currently working on his new title, Renegade XL-900, a gritty cyberpunk story.</p>
-    <p>Always easy to reach, he is available for commissions.</p>
+  <div class="content">
+    <h1>Contact Steph Dumais</h1>
+    <form class="contact-form" @submit.prevent="sendEmail">
+      <div class="fieldset">
+        <label>Name</label>
+        <input type="text" name="user_name" required />
+      </div>
+      <div class="fieldset">
+        <label>Email</label>
+        <input type="email" name="user_email" required />
+      </div>
+      <div class="fieldset">
+        <label>Message</label>
+        <textarea name="message" required></textarea>
+      </div>
+      <div class="fieldset">
+        <input type="submit" ref="sendbutton" value="Send Message" />
+        <p class="error">
+          There was an error submitting your form.
+          <br />Please try again later.
+        </p>
+        <p class="success">Message sent. Thank you!</p>
+      </div>
+    </form>
   </div>
 </template>
 
 <script>
+import emailjs from "emailjs-com";
 export default {
+  methods: {
+    loading: function () {
+      document.querySelector('input[type="submit"]').classList.add("loading");
+    },
+    sendEmail: (e) => {
+      document.querySelector('input[type="submit"]').classList.add("loading");
 
+      emailjs
+        .sendForm(
+          "raisinlove@gmail.com",
+          "raisinlovecontact",
+          e.target,
+          "user_Kvkps1m2ZrscVKwzitiug"
+        )
+        .then(
+          (result) => {
+            console.log("SUCCESS!", result.status, result.text);
+            document
+              .querySelector('input[type="submit"]')
+              .classList.remove("loading");
+            document
+              .querySelector('input[type="submit"]')
+              .classList.add("hide");
+            document.querySelector(".success").classList.add("show");
+          },
+          (error) => {
+            console.log("FAILED...", error);
+            document
+              .querySelector('input[type="submit"]')
+              .classList.remove("loading");
+            document
+              .querySelector('input[type="submit"]')
+              .classList.add("hide");
+            document.querySelector(".error").classList.add("show");
+          }
+        );
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.about {
-  margin: 30px auto 50px;
-  max-width: 800px;
-  padding: 50px 50px 70px;
-  background: white;
+@import "@/assets/mixins.scss";
+@import "@/assets/content.scss";
+
+@keyframes loading {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
 }
 
-p {
-  margin: 15px 0 20px;
-  a {
-    color:#666;
-    text-decoration: underline;
+.error,
+.success {
+  padding: 0;
+  margin: 0;
+  right: 0;
+  position: absolute;
+  opacity: 0;
+  font-weight: bold;
+  transition: all 200ms;
+  z-index: 1;
+  text-align: center;
+
+  @include mq(above-bp) {
+    text-align: right;
+  }
+
+  &.show {
+    opacity: 1;
+  }
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: darkred;
+}
+
+.contact-form {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fieldset {
+  position: relative;
+  display: block;
+  border: none;
+  text-align: center;
+
+  @include mq(above-bp) {
+    display: flex;
+    margin: 20px auto;
+  }
+}
+
+label {
+  display: block;
+  @include mq(above-bp) {
+    flex: 1;
+  }
+}
+
+label,
+input,
+textarea {
+  padding: 10px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  word-spacing: 1px;
+  min-height: 46px;
+  border: none;
+  text-align: center;
+
+  @include mq(above-bp) {
+    text-align: left;
+  }
+}
+
+textarea {
+  min-height: 100px;
+}
+
+input:not([type="submit"]),
+textarea {
+  display: block;
+  background: #ededed;
+  width: 100%;
+  @include mq(above-bp) {
+    flex: 2;
+  }
+}
+
+input[type="submit"] {
+  background: #000;
+  color: #fff;
+  cursor: pointer;
+  padding-left: 20px;
+  padding-right: 20px;
+  transition: all 200ms;
+  opacity: 1;
+  z-index: 2;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @include mq(above-bp) {
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  &.loading {
+    animation: loading 600ms infinite;
+  }
+
+  &.hide {
+    opacity: 0;
   }
 }
 </style>

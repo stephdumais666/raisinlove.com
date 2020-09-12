@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="content">
     <h1>About Steph Dumais</h1>
     <p>Steph Dumais is an illustrator, underground horror comix publisher and Web Developper based in the Montreal area.</p>
     <p>His professional career started in graphic design before moving on to web development, but has consistently freelanced in design and illustration since 1998.</p>
@@ -20,18 +20,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.about {
-  margin: 30px auto 50px;
-  max-width: 800px;
-  padding: 50px 50px 70px;
-  background: white;
-}
-
-p {
-  margin: 15px 0 20px;
-  a {
-    color:#666;
-    text-decoration: underline;
-  }
-}
+@import "@/assets/mixins.scss";
+@import "@/assets/content.scss";
 </style>
