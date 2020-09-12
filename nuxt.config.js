@@ -53,7 +53,8 @@ export default {
   plugins: [
     "~/plugins/posts.server.js",
     "~/plugins/tags.server.js",
-    "~/plugins/dateformat.js"
+    "~/plugins/dateformat.js",
+    "~/plugins/hammer.client.js",
   ],
   generate: {
     routes: dynamicRoutes

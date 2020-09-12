@@ -1,11 +1,11 @@
 <template>
   <div id="list-complete-demo" class="gallery">
     <div id="lightbox" class="lightbox">
-      <div
-        class="lightbox__close"
-
-        v-on:click="close()"
-      ></div>
+      <div 
+      class="lightbox__close" 
+      v-hammer:swipe.left="swipebox('prev')"
+      v-hammer:swipe.right="swipebox('next')"
+      v-on:click="close()"></div>
       <div class="lightbox__prev" v-on:click="slidebox('prev')">
         <svg
           version="1.1"
@@ -128,7 +128,10 @@
 </template>
 
 <script>
+
+
 export default {
+
   data() {
     return {
       activeClass: "active",
@@ -253,7 +256,7 @@ export default {
       }, 500);
     },
     swipebox: function (direction) {
-      alert(direction);
+      console.log(direction);
     },
     close: function (image) {
       var lightbox = document.querySelector(".lightbox");
