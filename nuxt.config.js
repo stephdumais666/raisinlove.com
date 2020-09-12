@@ -35,6 +35,18 @@ export default {
       {
         property: "og:image",
         content: "https://www.raisinlove.com/og.jpg"
+      },
+      {
+        property: "og:url",
+        content: "https://www.raisinlove.com"
+      },
+      {
+        property: "og:type",
+        content: "website"
+      },
+      {
+        property: "fb:app_id",
+        content: "137378089627412"
       }
     ],
     link: [
