@@ -22,7 +22,19 @@ export default {
       {
         hid: "description",
         name: "description",
-        content: process.env.npm_package_description || ""
+        content: "Steph Dumais Illustrations and Projects"
+      },
+      {
+        property: "og:title",
+        content: "Raisinlove - Steph Dumais"
+      },
+      {
+        property: "og:description",
+        content: "Steph Dumais Illustrations and Projects"
+      },
+      {
+        property: "og:image",
+        content: "https://www.raisinlove.com/og.jpg"
       }
     ],
     link: [
