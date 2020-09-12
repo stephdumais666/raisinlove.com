@@ -18,16 +18,19 @@ export default {
 @import "@/assets/mixins.scss";
 section.masthead {
   width: 100%;
-  height: 50vh;
+  height: 100px;
   @include mq(above-bp) {
-    height: 100vh;
+    height: 200px;
+  }
+  @include mq(above-600px) {
+    height: 300px;
   }
   overflow: hidden;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 7vw;
+  padding: 0;
   background: -moz-radial-gradient(
       center,
       ellipse cover,
@@ -54,11 +57,14 @@ section.masthead {
   background-size: cover;
   color: #333;
   h1 {
+    padding: 0;
+    margin: 0;
     opacity: 0.8;
     color: white;
-    font-size: 20vw;
+    //font-size: 20vw;
+    line-height: 0;
     text-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
-    //@include fluid-type(font-size, 320px, 1366px, 30px, 65px);
+    @include fluid-type(font-size, 320px, 1366px, 70px, 250px);
   }
 }
 </style>

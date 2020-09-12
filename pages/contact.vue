@@ -1,6 +1,7 @@
 <template>
   <div class="content">
     <h1>Contact Steph Dumais</h1>
+    <img src="/montreal.jpg" class="photo" alt="Montréal" />
     <form class="contact-form" @submit.prevent="sendEmail">
       <div class="fieldset">
         <label>Name</label>
@@ -74,6 +75,10 @@ export default {
 @import "@/assets/mixins.scss";
 @import "@/assets/content.scss";
 
+.content {
+  text-align: center;
+}
+
 @keyframes loading {
   0% {
     opacity: 0.3;
@@ -84,6 +89,12 @@ export default {
   100% {
     opacity: 0.3;
   }
+}
+
+.photo {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .error,
@@ -144,7 +155,7 @@ label,
 input,
 textarea {
   padding: 10px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Titillium Web", sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   min-height: 46px;

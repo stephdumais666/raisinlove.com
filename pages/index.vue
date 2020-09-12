@@ -59,7 +59,7 @@
         </svg>
       </div>
       <h2 class="lightbox__title"></h2>
-      <figure class="closeicon">
+      <figure class="closeicon"  v-on:click="close()">
         <svg
           version="1.1"
           id="Capa_1"

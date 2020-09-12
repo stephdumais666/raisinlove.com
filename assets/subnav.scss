@@ -69,13 +69,15 @@
   }
 
   button {
+    font-family: 'Titillium Web', sans-serif;
     background: #fff;
     padding: 5px 10px;
     border-radius: 3px;
     border: none;
     color: #000;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 13px;
+    line-height: 1;
     letter-spacing: 1px;
     cursor: pointer;
     outline: none !important;

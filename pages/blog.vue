@@ -152,7 +152,7 @@ a.readmore {
 }
 
 .tags-list li {
-  font-family: "Open Sans", serif;
+font-family: 'Titillium Web', sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: 6px 15px;
