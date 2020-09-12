@@ -73,6 +73,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/mixins.scss";
 .posts {
   display: grid;
   grid-template-columns: 2fr 1fr;
