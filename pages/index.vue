@@ -261,6 +261,7 @@ export default {
     },
     filter: function (tag) {
       this.currentTag = tag;
+      window.scrollTo(0,0);
       //this.updateHash(tag);
     },
     thumbnailclasses: function (illustration) {
