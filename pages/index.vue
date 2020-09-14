@@ -88,38 +88,44 @@
         </li>
       </ul>
     </nav>
-
-    <transition-group name="list-complete" class="list-complete" tag="section">
-      <div
-        itemscope
-        itemtype="https://schema.org/VisualArtwork"
-        v-for="(illustration, index) in filteredItems"
-        v-bind:key="illustration.id"
-        class="list-complete-item"
-        :ref="'i-'+illustration.id"
-      >
+    <keep-alive>
+      <transition-group name="list-complete" class="list-complete" tag="section">
         <div
-          itemprop="image"
-          v-on:click="lightbox(
+          itemscope
+          itemtype="https://schema.org/VisualArtwork"
+          v-for="(illustration, index) in filteredItems"
+          v-bind:key="illustration.id"
+          class="list-complete-item"
+          :ref="'i-'+illustration.id"
+        >
+          <div
+            itemprop="image"
+            v-on:click="lightbox(
             illustration._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url,
             illustration.title.rendered, index+1, filteredItems.length  
             )"
-          :ref="'image-'+illustration.id"
-          :data-index="index+1"
-          :data-illustrationindex="illustration.id"
-          :class="thumbnailclasses(illustration)"
-          :style="'background-image:url('+
+            :ref="'image-'+illustration.id"
+            :data-index="index+1"
+            :data-illustrationindex="illustration.id"
+            :class="thumbnailclasses(illustration)"
+            :style="'background-image:url('+
           illustration._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url
           +')'"
-        >
-          <h2 class="list-complete-item__title" itemprop="name">{{ illustration.title.rendered }}</h2>
-          <span class="list-complete-item__creator" itemprop="creator" itemscope itemtype="https://schema.org/Person">
-            <span itemprop="name">Steph Dumais</span>
-          </span>
-          <div class="list-complete-item__loader"></div>
+          >
+            <h2 class="list-complete-item__title" itemprop="name">{{ illustration.title.rendered }}</h2>
+            <span
+              class="list-complete-item__creator"
+              itemprop="creator"
+              itemscope
+              itemtype="https://schema.org/Person"
+            >
+              <span itemprop="name">Steph Dumais</span>
+            </span>
+            <div class="list-complete-item__loader"></div>
+          </div>
         </div>
-      </div>
-    </transition-group>
+      </transition-group>
+    </keep-alive>
   </div>
 </template>
 
@@ -129,7 +135,6 @@ export default {
     return {
       activeClass: "active",
       currentTag: "all",
-      imagecount: 0,
     };
   },
   computed: {
@@ -152,6 +157,12 @@ export default {
     this.$store.dispatch("getIllustrations");
     this.$store.dispatch("getIllustrationTags");
   },
+  beforeMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.handleScroll);
+  },
   mounted() {
     var lightbox = document.getElementById("lightbox");
     var left = document.querySelector(".lightbox__prev");
@@ -170,10 +181,17 @@ export default {
         }
       }
     });
-
-    console.log("loading: " + this.imagecount);
   },
   methods: {
+    handleScroll() {
+      if (timer !== null) {
+        clearTimeout(timer);
+        document.querySelector(".subnav").classList.add("active");
+      }
+      var timer = setTimeout(function () {
+        document.querySelector(".subnav").classList.remove("active");
+      }, 2000);
+    },
     lightbox: function (image, title, index, total) {
       var lightbox = document.querySelector(".lightbox");
       var lightbox__title = lightbox.querySelector(".lightbox__title");

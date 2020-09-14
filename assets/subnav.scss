@@ -27,6 +27,7 @@
     li button:not(:focus) {
       opacity: 0.4;
     }
+    &.active,
     &:hover {
       background: rgba(0, 0, 0, 0.8);
 
@@ -69,7 +70,7 @@
   }
 
   button {
-    font-family: 'Titillium Web', sans-serif;
+    font-family: "Titillium Web", sans-serif;
     background: #fff;
     padding: 5px 10px;
     border-radius: 3px;
@@ -89,10 +90,8 @@
       margin: 0;
     }
 
-    &:hover {
-      background: #000;
-    }
-
+    .subnav.active &,
+    &:hover,
     &:focus {
       background: #000;
       color: #fff;
