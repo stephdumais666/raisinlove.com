@@ -50,7 +50,27 @@ export default {
       {
         property: "fb:app_id",
         content: "137378089627412"
-      }
+      },
+      {
+        property:"twitter:card",
+        content:"summary"
+      },
+      {
+        property:"twitter:site",
+        content:"@raisinlove"
+      },
+      {
+        property:"twitter:title",
+        content: "Raisinlove - Steph Dumais Illustraion and Comics",
+      },
+      {
+        property:"twitter:description",
+        content: "Steph Dumais' illustrations in horror, pinups, comics, flyers, album covers, zombies, demons, witches and more!"
+      },
+      {
+        property:"twitter:image",
+        content: "https://www.raisinlove.com/og.jpg"
+      },
     ],
     link: [
       { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
