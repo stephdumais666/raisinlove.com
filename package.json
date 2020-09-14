@@ -11,6 +11,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/robots": "^2.4.2",
+    "@nuxtjs/sitemap": "^2.4.0",
     "axios": "^0.19.2",
     "emailjs-com": "^2.6.3",
     "nuxt": "^2.0.0",

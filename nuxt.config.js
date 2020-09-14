@@ -91,7 +91,13 @@ export default {
   /*
    ** Nuxt.js dev-modules
    */
-  buildModules: [],
+  buildModules: [
+    ['@nuxtjs/robots', {
+      UserAgent: 'Googlebot',
+      Disallow: '/wp-admin/'
+    }],
+    '@nuxtjs/sitemap',
+  ],
   /*
    ** Build configuration
    */
