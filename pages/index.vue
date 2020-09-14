@@ -1,9 +1,7 @@
 <template>
   <div id="list-complete-demo" class="gallery">
     <div id="lightbox" class="lightbox">
-      <div 
-      class="lightbox__close" 
-      v-on:click="close()"></div>
+      <div class="lightbox__close" v-on:click="close()"></div>
       <div class="lightbox__prev" v-on:click="slidebox('prev')">
         <svg
           version="1.1"
@@ -17,14 +15,12 @@
         >
           <g>
             <path
-              
               d="M165,0H29C13,0,0,13,0,29v131c0,16,13,29,29,29h136c16,0,29-13,29-29V29C194,13,181,0,165,0z M43.5,154.2
 		c-4.4,0-8-3.6-8-8V34.7c0-4.4,3.6-8,8-8H159c4.4,0,8,3.6,8,8v111.5c0,4.4-3.6,8-8,8H43.5z M25.6,8.3l12.6,11.3
 		C33.2,21.3,29.2,25.6,28,31L8.2,26.3C9.4,17.1,16.5,9.8,25.6,8.3z M8,160v-4.9l19.8-6c1.4,7.4,7.9,13.1,15.7,13.1h1L35.5,181H29
 		C17.4,181,8,171.6,8,160z M168.1,180.7l-10.9-18.6h1.8c6.6,0,12.2-4,14.7-9.6l12.1,10.2C184.6,172,177.3,179.4,168.1,180.7z"
             />
             <polygon
-              
               points="151,82.2 102.3,82.2 102.3,61.8 49.5,89.4 102.3,117 102.3,96.6 151,96.6 	"
             />
           </g>
@@ -43,24 +39,21 @@
         >
           <g>
             <path
-              
               d="M165,0H29C13,0,0,13,0,29v131c0,16,13,29,29,29h136c16,0,29-13,29-29V29C194,13,181,0,165,0z M43.5,154.2
 		c-4.4,0-8-3.6-8-8V34.7c0-4.4,3.6-8,8-8H159c4.4,0,8,3.6,8,8v111.5c0,4.4-3.6,8-8,8H43.5z M25.6,8.3l12.6,11.3
 		C33.2,21.3,29.2,25.6,28,31L8.2,26.3C9.4,17.1,16.5,9.8,25.6,8.3z M8,160v-4.9l19.8-6c1.4,7.4,7.9,13.1,15.7,13.1h1L35.5,181H29
 		C17.4,181,8,171.6,8,160z M168.1,180.7l-10.9-18.6h1.8c6.6,0,12.2-4,14.7-9.6l12.1,10.2C184.6,172,177.3,179.4,168.1,180.7z"
             />
             <polygon
-              
               points="49.5,96.6 98.3,96.6 98.3,117 151,89.4 98.3,61.8 98.3,82.2 49.5,82.2 	"
             />
           </g>
         </svg>
       </div>
       <h2 class="lightbox__title"></h2>
-      <figure class="closeicon"  v-on:click="close()">
+      <figure class="closeicon" v-on:click="close()">
         <svg
           version="1.1"
-          
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           x="0px"
@@ -124,14 +117,12 @@
 </template>
 
 <script>
-
-
 export default {
-
   data() {
     return {
       activeClass: "active",
       currentTag: "all",
+      imagecount: 0,
     };
   },
   computed: {
@@ -172,6 +163,8 @@ export default {
         }
       }
     });
+
+    console.log("loading: " + this.imagecount);
   },
   methods: {
     lightbox: function (image, title, index, total) {
@@ -261,7 +254,7 @@ export default {
     },
     filter: function (tag) {
       this.currentTag = tag;
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
       //this.updateHash(tag);
     },
     thumbnailclasses: function (illustration) {

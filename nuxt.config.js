@@ -14,23 +14,26 @@ export default {
   /*
    ** Headers of the page
    */
+  htmlAttrs: {
+    lang: 'en',
+  },
   head: {
-    title: "Raisinlove - Steph Dumais",
+    title: "Raisinlove - Steph Dumais Illustraion and Comics",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       {
         hid: "description",
         name: "description",
-        content: "Steph Dumais Illustrations and Projects"
+        content: "Steph Dumais' illustrations in horror, pinups, comics, flyers, album covers, zombies, demons, witches and more!"
       },
       {
         property: "og:title",
-        content: "Raisinlove - Steph Dumais"
+        content: "Raisinlove - Steph Dumais Illustraion and Comics",
       },
       {
         property: "og:description",
-        content: "Steph Dumais Illustrations and Projects"
+        content: "Steph Dumais' illustrations in horror, pinups, comics, flyers, album covers, zombies, demons, witches and more!"
       },
       {
         property: "og:image",
