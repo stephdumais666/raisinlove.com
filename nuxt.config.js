@@ -14,10 +14,10 @@ export default {
   /*
    ** Headers of the page
    */
-  htmlAttrs: {
-    lang: 'en',
-  },
   head: {
+    htmlAttrs: {
+      lang: 'en',
+    },
     title: "Raisinlove - Steph Dumais Illustraion and Comics",
     meta: [
       { charset: "utf-8" },
