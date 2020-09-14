@@ -116,7 +116,7 @@ export default {
     ['@nuxtjs/robots', {
       UserAgent: 'Googlebot',
       Disallow: '/wp-admin/',
-      Sitemap: 'https://www.raisinlove.com/robots.txt',
+      Sitemap: 'https://www.raisinlove.com/sitemap.xml',
     }],
     '@nuxtjs/sitemap',
   ],
