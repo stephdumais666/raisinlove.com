@@ -112,10 +112,11 @@ export default {
    ** Nuxt.js dev-modules
    */
   buildModules: [
-    '@nuxtjs/amp',
+    //'@nuxtjs/amp',
     ['@nuxtjs/robots', {
       UserAgent: 'Googlebot',
-      Disallow: '/wp-admin/'
+      Disallow: '/wp-admin/',
+      Sitemap: 'https://www.raisinlove.com/robots.txt',
     }],
     '@nuxtjs/sitemap',
   ],
