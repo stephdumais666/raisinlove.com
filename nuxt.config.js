@@ -52,23 +52,23 @@ export default {
         content: "137378089627412"
       },
       {
-        property:"twitter:card",
+        name:"twitter:card",
         content:"summary"
       },
       {
-        property:"twitter:site",
+        name:"twitter:site",
         content:"@raisinlove"
       },
       {
-        property:"twitter:title",
+        name:"twitter:title",
         content: "Raisinlove - Steph Dumais Illustraion and Comics",
       },
       {
-        property:"twitter:description",
+        name:"twitter:description",
         content: "Steph Dumais' illustrations in horror, pinups, comics, flyers, album covers, zombies, demons, witches and more!"
       },
       {
-        property:"twitter:image",
+        name:"twitter:image",
         content: "https://www.raisinlove.com/og.jpg"
       },
     ],
@@ -131,5 +131,6 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) { }
-  }
+  },
+  target: 'static'
 }
