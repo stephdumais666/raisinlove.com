@@ -63,7 +63,7 @@
   svg {
     width: 100%;
     height: 100%;
-    filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
+    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
 
     polygon,
     path {
@@ -105,6 +105,24 @@
     display: none;
   }
 }
+.list-complete-item__creator {
+  position: absolute;
+  bottom: 0;
+  opacity: 0; 
+}
+.list-complete-item__title {
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  padding: 5px 10px;
+  background: #000;
+  color: #fff;
+  transition: all 400ms;
+
+  .list-complete-img:hover & {
+    opacity:1;
+  }
+}
 
 .closeicon {
   width: 30px;
@@ -113,8 +131,8 @@
   top: 12px;
   right: 20px;
   z-index: 30;
-  filter: drop-shadow( 3px 3px 2px rgba(0, 0, 0, .7));
-  
+  filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.7));
+
   path {
     fill: #fff;
   }
@@ -172,7 +190,7 @@
   background-color: #ffffff;
   background-image: url(/ajax-loader.gif);
   opacity: 0;
-  
+
   .list-complete-enter &,
   .preloading & {
     opacity: 1;

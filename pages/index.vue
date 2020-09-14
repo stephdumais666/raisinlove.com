@@ -1,5 +1,5 @@
 <template>
-  <div id="list-complete-demo" class="gallery">
+  <div id="list-complete-demo" class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
     <div id="lightbox" class="lightbox">
       <div class="lightbox__close" v-on:click="close()"></div>
       <div class="lightbox__prev" v-on:click="slidebox('prev')">
@@ -91,12 +91,15 @@
 
     <transition-group name="list-complete" class="list-complete" tag="section">
       <div
+        itemscope
+        itemtype="https://schema.org/VisualArtwork"
         v-for="(illustration, index) in filteredItems"
         v-bind:key="illustration.id"
         class="list-complete-item"
         :ref="'i-'+illustration.id"
       >
         <div
+          itemprop="image"
           v-on:click="lightbox(
             illustration._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url,
             illustration.title.rendered, index+1, filteredItems.length  
@@ -109,6 +112,10 @@
           illustration._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url
           +')'"
         >
+          <h2 class="list-complete-item__title" itemprop="name">{{ illustration.title.rendered }}</h2>
+          <span class="list-complete-item__creator" itemprop="creator" itemscope itemtype="https://schema.org/Person">
+            <span itemprop="name">Steph Dumais</span>
+          </span>
           <div class="list-complete-item__loader"></div>
         </div>
       </div>

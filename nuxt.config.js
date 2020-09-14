@@ -92,12 +92,16 @@ export default {
    ** Nuxt.js dev-modules
    */
   buildModules: [
+    '@nuxtjs/amp',
     ['@nuxtjs/robots', {
       UserAgent: 'Googlebot',
       Disallow: '/wp-admin/'
     }],
     '@nuxtjs/sitemap',
   ],
+  sitemap:{
+    hostname: 'https://www.raisinlove.com',
+  },
   /*
    ** Build configuration
    */
