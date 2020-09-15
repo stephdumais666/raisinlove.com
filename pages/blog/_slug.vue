@@ -1,29 +1,36 @@
 <template>
-  <main class="post individual">
-    <h1>{{ post.title.rendered }}</h1>
-    <small class="date">{{ post.date | dateformat }}</small>
-    <section v-html="post.content.rendered"></section>
-  </main>
+  <div>
+    <app-nav />
+    <main class="post individual">
+      <h1>{{ post.title.rendered }}</h1>
+      <small class="date">{{ post.date | dateformat }}</small>
+      <section v-html="post.content.rendered"></section>
+    </main>
+  </div>
 </template>
 
 <script>
+import AppNav from "~/components/AppNav.vue";
 export default {
+  components: {
+    AppNav,
+  },
   computed: {
     posts() {
       return this.$store.state.posts;
     },
     post() {
-      return this.posts.find(el => el.slug === this.slug);
-    }
+      return this.posts.find((el) => el.slug === this.slug);
+    },
   },
   data() {
     return {
-      slug: this.$route.params.slug
+      slug: this.$route.params.slug,
     };
   },
   created() {
     this.$store.dispatch("getPosts");
-  }
+  },
 };
 </script>
 

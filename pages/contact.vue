@@ -1,35 +1,42 @@
 <template>
-  <div class="content">
-    <h1>Contact Steph Dumais</h1>
-    <img src="/montreal.jpg" class="photo" alt="Montréal" />
-    <form class="contact-form" @submit.prevent="sendEmail">
-      <div class="fieldset">
-        <label>Name</label>
-        <input type="text" name="user_name" required />
-      </div>
-      <div class="fieldset">
-        <label>Email</label>
-        <input type="email" name="user_email" required />
-      </div>
-      <div class="fieldset">
-        <label>Message</label>
-        <textarea name="message" required></textarea>
-      </div>
-      <div class="fieldset">
-        <input type="submit" ref="sendbutton" value="Send Message" />
-        <p class="error">
-          There was an error submitting your form.
-          <br />Please try again later.
-        </p>
-        <p class="success">Message sent. Thank you!</p>
-      </div>
-    </form>
+  <div>
+    <app-nav />
+    <div class="content">
+      <h1>Contact Steph Dumais</h1>
+      <img src="/montreal.jpg" class="photo" alt="Montréal" />
+      <form class="contact-form" @submit.prevent="sendEmail">
+        <div class="fieldset">
+          <label>Name</label>
+          <input type="text" name="user_name" required />
+        </div>
+        <div class="fieldset">
+          <label>Email</label>
+          <input type="email" name="user_email" required />
+        </div>
+        <div class="fieldset">
+          <label>Message</label>
+          <textarea name="message" required></textarea>
+        </div>
+        <div class="fieldset">
+          <input type="submit" ref="sendbutton" value="Send Message" />
+          <p class="error">
+            There was an error submitting your form.
+            <br />Please try again later.
+          </p>
+          <p class="success">Message sent. Thank you!</p>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
 <script>
 import emailjs from "emailjs-com";
+import AppNav from "~/components/AppNav.vue";
 export default {
+  components: {
+    AppNav,
+  },
   methods: {
     loading: function () {
       document.querySelector('input[type="submit"]').classList.add("loading");

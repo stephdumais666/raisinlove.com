@@ -11,29 +11,50 @@
   color: #fff;
   padding: 0 20px;
   width: 100%;
-  transition: all 500ms;
-  position: fixed;
-  z-index: 10;
-  top: 50px;
+  transition: opacity 500ms;
   background: #000;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 1) 50%);
+  top: 0;
+  padding-bottom: 20px;
+  position: fixed;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
 
-  @include mq(below-bp) {
-    padding-bottom: 40px;
+  &.active {
+    top: 210px;
+    z-index: 50;
+    height: auto;
+    overflow: visible;
+    opacity: 1;
   }
 
-  @include mq(above-bp) {
+  @include mq(above-650px) {
+    height: auto;
+    top: 60px;
+    padding-bottom: 0;
+    z-index: 10;
     background: rgba(0, 0, 0, 0);
-    li button:not(:focus) {
-      opacity: 0.4;
-    }
-    &.active,
-    &:hover {
+    overflow: visible;
+    opacity: 1;
+    transition: all 500ms;
+
+    &:hover,
+    &.desktopactive,
+    &.active {
+      z-index: 50;
+      height: auto;
+      overflow: visible;
+      opacity: 1;
+      top: 60px;
       background: rgba(0, 0, 0, 0.8);
 
       li button:not(:focus) {
         opacity: 1;
       }
+    }
+
+    li button:not(:focus) {
+      opacity: 0.4;
     }
   }
 
@@ -50,7 +71,7 @@
     position: relative;
     animation: 1s ease-out 100ms 1 slideInFromTop;
 
-    @include mq(above-bp) {
+    @include mq(above-650px) {
       justify-content: flex-end;
     }
 
@@ -62,7 +83,7 @@
       transition: all 500ms;
       opacity: 1;
 
-      @include mq(above-bp) {
+      @include mq(above-650px) {
         height: 30px;
         margin-right: 7px;
       }
@@ -84,7 +105,7 @@
     outline: none !important;
     margin: 3px;
 
-    @include mq(above-bp) {
+    @include mq(above-650px) {
       background: #111;
       color: #aaa;
       margin: 0;

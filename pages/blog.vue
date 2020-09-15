@@ -1,6 +1,7 @@
 <template>
   <div>
-    <app-masthead></app-masthead>
+    <app-nav />
+    <app-masthead />
     <div class="posts">
       <main>
         <div class="post" v-for="post in sortedPosts" :key="post.id">
@@ -34,15 +35,16 @@
 
 <script>
 import AppMasthead from "@/components/AppMasthead.vue";
-
+import AppNav from "~/components/AppNav.vue";
 export default {
   components: {
-    AppMasthead
+    AppNav,
+    AppMasthead,
   },
   data() {
     return {
       selectedTag: null,
-      activeClass: "active"
+      activeClass: "active",
     };
   },
   computed: {
@@ -54,8 +56,8 @@ export default {
     },
     sortedPosts() {
       if (!this.selectedTag) return this.posts;
-      return this.posts.filter(el => el.tags.includes(this.selectedTag));
-    }
+      return this.posts.filter((el) => el.tags.includes(this.selectedTag));
+    },
   },
   created() {
     this.$store.dispatch("getPosts");
@@ -67,8 +69,8 @@ export default {
       } else {
         this.selectedTag = null;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -152,7 +154,7 @@ a.readmore {
 }
 
 .tags-list li {
-font-family: 'Titillium Web', sans-serif;
+  font-family: "Titillium Web", sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
   padding: 6px 15px;

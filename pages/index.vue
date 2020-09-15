@@ -1,139 +1,155 @@
 <template>
-  <div id="list-complete-demo" class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
-    <div id="lightbox" class="lightbox">
-      <div class="lightbox__close" v-on:click="close()"></div>
-      <div class="lightbox__prev" v-on:click="slidebox('prev')">
-        <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 194 189"
-          style="enable-background:new 0 0 194 189;"
-          xml:space="preserve"
-        >
-          <g>
-            <path
-              d="M165,0H29C13,0,0,13,0,29v131c0,16,13,29,29,29h136c16,0,29-13,29-29V29C194,13,181,0,165,0z M43.5,154.2
+  <div>
+    <app-nav @navState="updateNavState" />
+    <div
+      id="list-complete-demo"
+      class="gallery"
+      itemscope
+      itemtype="http://schema.org/ImageGallery"
+    >
+      <div id="lightbox" class="lightbox">
+        <div class="lightbox__close" v-on:click="close()"></div>
+        <div class="lightbox__prev" v-on:click="slidebox('prev')">
+          <svg
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 194 189"
+            style="enable-background:new 0 0 194 189;"
+            xml:space="preserve"
+          >
+            <g>
+              <path
+                d="M165,0H29C13,0,0,13,0,29v131c0,16,13,29,29,29h136c16,0,29-13,29-29V29C194,13,181,0,165,0z M43.5,154.2
 		c-4.4,0-8-3.6-8-8V34.7c0-4.4,3.6-8,8-8H159c4.4,0,8,3.6,8,8v111.5c0,4.4-3.6,8-8,8H43.5z M25.6,8.3l12.6,11.3
 		C33.2,21.3,29.2,25.6,28,31L8.2,26.3C9.4,17.1,16.5,9.8,25.6,8.3z M8,160v-4.9l19.8-6c1.4,7.4,7.9,13.1,15.7,13.1h1L35.5,181H29
 		C17.4,181,8,171.6,8,160z M168.1,180.7l-10.9-18.6h1.8c6.6,0,12.2-4,14.7-9.6l12.1,10.2C184.6,172,177.3,179.4,168.1,180.7z"
-            />
-            <polygon
-              points="151,82.2 102.3,82.2 102.3,61.8 49.5,89.4 102.3,117 102.3,96.6 151,96.6 	"
-            />
-          </g>
-        </svg>
-      </div>
-      <div class="lightbox__next" v-on:click="slidebox('next')">
-        <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 194 189"
-          style="enable-background:new 0 0 194 189;"
-          xml:space="preserve"
-        >
-          <g>
-            <path
-              d="M165,0H29C13,0,0,13,0,29v131c0,16,13,29,29,29h136c16,0,29-13,29-29V29C194,13,181,0,165,0z M43.5,154.2
+              />
+              <polygon
+                points="151,82.2 102.3,82.2 102.3,61.8 49.5,89.4 102.3,117 102.3,96.6 151,96.6 	"
+              />
+            </g>
+          </svg>
+        </div>
+        <div class="lightbox__next" v-on:click="slidebox('next')">
+          <svg
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 194 189"
+            style="enable-background:new 0 0 194 189;"
+            xml:space="preserve"
+          >
+            <g>
+              <path
+                d="M165,0H29C13,0,0,13,0,29v131c0,16,13,29,29,29h136c16,0,29-13,29-29V29C194,13,181,0,165,0z M43.5,154.2
 		c-4.4,0-8-3.6-8-8V34.7c0-4.4,3.6-8,8-8H159c4.4,0,8,3.6,8,8v111.5c0,4.4-3.6,8-8,8H43.5z M25.6,8.3l12.6,11.3
 		C33.2,21.3,29.2,25.6,28,31L8.2,26.3C9.4,17.1,16.5,9.8,25.6,8.3z M8,160v-4.9l19.8-6c1.4,7.4,7.9,13.1,15.7,13.1h1L35.5,181H29
 		C17.4,181,8,171.6,8,160z M168.1,180.7l-10.9-18.6h1.8c6.6,0,12.2-4,14.7-9.6l12.1,10.2C184.6,172,177.3,179.4,168.1,180.7z"
-            />
-            <polygon
-              points="49.5,96.6 98.3,96.6 98.3,117 151,89.4 98.3,61.8 98.3,82.2 49.5,82.2 	"
-            />
-          </g>
-        </svg>
-      </div>
-      <h2 class="lightbox__title"></h2>
-      <figure class="closeicon" v-on:click="close()">
-        <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 252 252"
-          style="enable-background:new 0 0 252 252;"
-          xml:space="preserve"
-        >
-          <g>
-            <path
-              d="M126,0C56.523,0,0,56.523,0,126s56.523,126,126,126s126-56.523,126-126S195.477,0,126,0z M126,234
+              />
+              <polygon
+                points="49.5,96.6 98.3,96.6 98.3,117 151,89.4 98.3,61.8 98.3,82.2 49.5,82.2 	"
+              />
+            </g>
+          </svg>
+        </div>
+        <h2 class="lightbox__title"></h2>
+        <figure class="closeicon" v-on:click="close()">
+          <svg
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px"
+            y="0px"
+            viewBox="0 0 252 252"
+            style="enable-background:new 0 0 252 252;"
+            xml:space="preserve"
+          >
+            <g>
+              <path
+                d="M126,0C56.523,0,0,56.523,0,126s56.523,126,126,126s126-56.523,126-126S195.477,0,126,0z M126,234
 		c-59.551,0-108-48.449-108-108S66.449,18,126,18s108,48.449,108,108S185.551,234,126,234z"
-            />
-            <path
-              d="M164.612,87.388c-3.515-3.515-9.213-3.515-12.728,0L126,113.272l-25.885-25.885c-3.515-3.515-9.213-3.515-12.728,0
+              />
+              <path
+                d="M164.612,87.388c-3.515-3.515-9.213-3.515-12.728,0L126,113.272l-25.885-25.885c-3.515-3.515-9.213-3.515-12.728,0
 		c-3.515,3.515-3.515,9.213,0,12.728L113.272,126l-25.885,25.885c-3.515,3.515-3.515,9.213,0,12.728
 		c1.757,1.757,4.061,2.636,6.364,2.636s4.606-0.879,6.364-2.636L126,138.728l25.885,25.885c1.757,1.757,4.061,2.636,6.364,2.636
 		s4.606-0.879,6.364-2.636c3.515-3.515,3.515-9.213,0-12.728L138.728,126l25.885-25.885
 		C168.127,96.601,168.127,90.902,164.612,87.388z"
-            />
-          </g>
-        </svg>
-      </figure>
-    </div>
-    <nav class="subnav filters">
-      <ul>
-        <li>
-          <button v-on:click="filter('all')">all</button>
-        </li>
-        <li v-for="tag in illustrationtags" v-bind:key="tag.id">
-          <button :class="'filters__'+tag.name" v-on:click="filter(tag.id)">{{ tag.name }}</button>
-        </li>
-      </ul>
-    </nav>
-    <keep-alive>
-      <transition-group name="list-complete" class="list-complete" tag="section">
-        <div
-          itemscope
-          itemtype="https://schema.org/VisualArtwork"
-          v-for="(illustration, index) in filteredItems"
-          v-bind:key="illustration.id"
-          class="list-complete-item"
-          :ref="'i-'+illustration.id"
-        >
+              />
+            </g>
+          </svg>
+        </figure>
+      </div>
+      <nav class="subnav filters" v-bind:class="{ 'active' : navState }">
+        <ul>
+          <li>
+            <button v-on:click="filter('all')">all</button>
+          </li>
+          <li v-for="tag in illustrationtags" v-bind:key="tag.id">
+            <button :class="'filters__'+tag.name" v-on:click="filter(tag.id)">{{ tag.name }}</button>
+          </li>
+        </ul>
+      </nav>
+      <keep-alive>
+        <transition-group name="list-complete" class="list-complete" tag="section">
           <div
-            itemprop="image"
-            v-on:click="lightbox(
+            itemscope
+            itemtype="https://schema.org/VisualArtwork"
+            v-for="(illustration, index) in filteredItems"
+            v-bind:key="illustration.id"
+            class="list-complete-item"
+            :ref="'i-'+illustration.id"
+          >
+            <div
+              itemprop="image"
+              v-on:click="lightbox(
             illustration._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url,
             illustration.title.rendered, index+1, filteredItems.length  
             )"
-            :ref="'image-'+illustration.id"
-            :data-index="index+1"
-            :data-illustrationindex="illustration.id"
-            :class="thumbnailclasses(illustration)"
-            :style="'background-image:url('+
+              :ref="'image-'+illustration.id"
+              :data-index="index+1"
+              :data-illustrationindex="illustration.id"
+              :class="thumbnailclasses(illustration)"
+              :style="'background-image:url('+
           illustration._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url
           +')'"
-          >
-            <h2 class="list-complete-item__title" itemprop="name">{{ illustration.title.rendered }}</h2>
-            <span
-              class="list-complete-item__creator"
-              itemprop="creator"
-              itemscope
-              itemtype="https://schema.org/Person"
             >
-              <span itemprop="name">Steph Dumais</span>
-            </span>
-            <div class="list-complete-item__loader"></div>
+              <h2
+                class="list-complete-item__title"
+                itemprop="name"
+              >{{ illustration.title.rendered }}</h2>
+              <span
+                class="list-complete-item__creator"
+                itemprop="creator"
+                itemscope
+                itemtype="https://schema.org/Person"
+              >
+                <span itemprop="name">Steph Dumais</span>
+              </span>
+              <div class="list-complete-item__loader"></div>
+            </div>
           </div>
-        </div>
-      </transition-group>
-    </keep-alive>
+        </transition-group>
+      </keep-alive>
+    </div>
   </div>
 </template>
 
 <script>
+import AppNav from "~/components/AppNav.vue";
 export default {
+  components: {
+    AppNav,
+  },
   data() {
     return {
-      activeClass: "active",
+    navState: false,
+    activeClass: "active",
       currentTag: "all",
     };
   },
@@ -183,13 +199,17 @@ export default {
     });
   },
   methods: {
+    updateNavState(state) {
+      this.navState = state;
+      console.log('state: '+this.navState);
+    },
     handleScroll() {
       if (timer !== null) {
         clearTimeout(timer);
-        document.querySelector(".subnav").classList.add("active");
+        document.querySelector(".subnav").classList.add("desktopactive");
       }
       var timer = setTimeout(function () {
-        document.querySelector(".subnav").classList.remove("active");
+        document.querySelector(".subnav").classList.remove("desktopactive");
       }, 2000);
     },
     lightbox: function (image, title, index, total) {

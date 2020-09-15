@@ -18,7 +18,7 @@ export default {
     htmlAttrs: {
       lang: 'en',
     },
-    title: "Raisinlove - Steph Dumais Illustraion and Comics",
+    title: "Raisinlove - Steph Dumais Illustration and Comics",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -29,7 +29,7 @@ export default {
       },
       {
         property: "og:title",
-        content: "Raisinlove - Steph Dumais Illustraion and Comics",
+        content: "Raisinlove - Steph Dumais Illustration and Comics",
       },
       {
         property: "og:description",
@@ -61,7 +61,7 @@ export default {
       },
       {
         name:"twitter:title",
-        content: "Raisinlove - Steph Dumais Illustraion and Comics",
+        content: "Raisinlove - Steph Dumais Illustration and Comics",
       },
       {
         name:"twitter:description",

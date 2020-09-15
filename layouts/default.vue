@@ -1,22 +1,17 @@
 <template>
   <div>
-    <app-nav />
     <nuxt />
   </div>
 </template>
 
 <script>
-import AppNav from "~/components/AppNav.vue";
-
 export default {
   transition: "default",
-  components: {
-    AppNav,
-  },
 };
 </script>
 
-<style>
+<style lang="scss">
+@import "@/assets/mixins.scss";
 html {
   font-family: "Titillium Web", sans-serif;
   font-size: 16px;
@@ -30,7 +25,10 @@ html {
 
 body {
   background-color: #fff;
-  padding-top: 50px;
+
+  @include mq(above-650px) {
+    padding-top: 60px;
+  }
 }
 
 h1,
