@@ -4,7 +4,7 @@
       <li class="nav__brand">
         <nuxt-link exact to="/">
           <app-icon />
-          <span>Raisinlove <span>Illustration</span></span>
+          <span>Raisinlove</span>
         </nuxt-link>
       </li>
       <li class="nav__menuitem">
@@ -149,13 +149,11 @@ a {
   }
 
   span {
-
+    top: -1px;
+    position: relative;
     color: #fff;
     @include mq(below-bp) {
       display: none;
-    }
-    span {
-      opacity:.4;
     }
   }
 }
