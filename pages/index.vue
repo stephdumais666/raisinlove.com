@@ -121,7 +121,6 @@ export default {
     window.removeEventListener("scroll", this.handleScroll);
   },
   mounted() {
-    this.testor();
     var lightbox = document.getElementById("lightbox");
     var left = document.querySelector(".lightbox__prev");
     var right = document.querySelector(".lightbox__next");
@@ -141,9 +140,6 @@ export default {
     });
   },
   methods: {
-    testor: function(){
-              let img = new Image();
-    },
     updateNavState(state) {
       this.navState = state;
       console.log("state: " + this.navState);
