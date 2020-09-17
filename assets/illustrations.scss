@@ -209,8 +209,6 @@
   background-position: center;
   width: 100%;
   cursor: pointer;
-  //opacity: 0;
-  transition: opacity 1s;
 
   &.list-complete-img--vertical {
     @include keep-ratio("22/34");

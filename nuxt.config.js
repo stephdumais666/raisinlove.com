@@ -96,8 +96,8 @@ export default {
     "~/plugins/redirectssl.js",
     "~/plugins/posts.server.js",
     "~/plugins/tags.server.js",
-    //"~/plugins/illustrations.server.js",
-    "~/plugins/illustrationtags.server.js",
+    //"~/plugins/illustrations.server.js", //preloading illustrations
+    "~/plugins/illustrationtags.server.js", //preloading tags
     "~/plugins/dateformat.js",
     "~/plugins/hammer.client.js",
   ],
@@ -118,8 +118,8 @@ export default {
         }
       },
       display: 'swap',
-      download:true,
-      base64:true,
+      download: true,
+      base64: true,
 
     }],
     ['@nuxtjs/robots', {

@@ -121,6 +121,7 @@ export default {
     window.removeEventListener("scroll", this.handleScroll);
   },
   mounted() {
+    this.testor();
     var lightbox = document.getElementById("lightbox");
     var left = document.querySelector(".lightbox__prev");
     var right = document.querySelector(".lightbox__next");
@@ -140,6 +141,9 @@ export default {
     });
   },
   methods: {
+    testor: function(){
+              let img = new Image();
+    },
     updateNavState(state) {
       this.navState = state;
       console.log("state: " + this.navState);
@@ -244,11 +248,12 @@ export default {
       //this.updateHash(tag);
     },
     thumbnailclasses: function (illustration) {
+
+      let formatClass = "list-complete-img preloading";
       let illusWidth =
         illustration._embedded["wp:featuredmedia"][0].media_details.width;
       let illusHeight =
         illustration._embedded["wp:featuredmedia"][0].media_details.height;
-      let formatClass = "list-complete-img preloading";
       let image =
         illustration._embedded["wp:featuredmedia"][0].media_details.sizes.full
           .source_url;
@@ -264,8 +269,9 @@ export default {
           formatClass = formatClass + " list-complete-img--vertical";
         }
       }
-
+      
       let img = new Image();
+
       img.onload = function () {
         var thumbnail = document.querySelector(
           'div.list-complete-img[data-illustrationindex="' +
@@ -277,6 +283,7 @@ export default {
         }
       };
       img.src = image;
+      
       return formatClass;
     },
     tagid: function (tag) {

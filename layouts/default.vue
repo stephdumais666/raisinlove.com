@@ -21,10 +21,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+  min-height:100vh;
 }
 
 body {
   background-color: #fff;
+  background-image:url(/icon.png);
+  background-repeat: no-repeat;
+  background-position: center center;
 
   @include mq(above-650px) {
     padding-top: 60px;
