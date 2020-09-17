@@ -26,7 +26,7 @@ html {
 
 body {
   background-color: #fff;
-  background-image:url(/icon.png);
+  background-image:url(/load.gif);
   background-repeat: no-repeat;
   background-position: center center;
 
