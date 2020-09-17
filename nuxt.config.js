@@ -96,6 +96,8 @@ export default {
     "~/plugins/redirectssl.js",
     "~/plugins/posts.server.js",
     "~/plugins/tags.server.js",
+    //"~/plugins/illustrations.server.js",
+    "~/plugins/illustrationtags.server.js",
     "~/plugins/dateformat.js",
     "~/plugins/hammer.client.js",
   ],
