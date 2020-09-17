@@ -52,23 +52,23 @@ export default {
         content: "137378089627412"
       },
       {
-        name:"twitter:card",
-        content:"summary"
+        name: "twitter:card",
+        content: "summary"
       },
       {
-        name:"twitter:site",
-        content:"@raisinlove"
+        name: "twitter:site",
+        content: "@raisinlove"
       },
       {
-        name:"twitter:title",
+        name: "twitter:title",
         content: "Raisinlove - Steph Dumais Illustration and Comics",
       },
       {
-        name:"twitter:description",
+        name: "twitter:description",
         content: "Steph Dumais' illustrations in horror, pinups, comics, flyers, album covers, zombies, demons, witches and more!"
       },
       {
-        name:"twitter:image",
+        name: "twitter:image",
         content: "https://www.raisinlove.com/og.jpg"
       },
     ],
@@ -79,12 +79,6 @@ export default {
       { rel: "manifest", href: "/site.webmanifest" },
       { rel: "mask-icon", href: "/safari-pinned-tab.svg" },
       { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      {
-        rel: "stylesheet",
-        href:
-          //"https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap"
-          "https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Titillium+Web:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
-      }
     ]
   },
   /*
@@ -113,6 +107,19 @@ export default {
    */
   buildModules: [
     //'@nuxtjs/amp',
+    ['@nuxtjs/google-fonts', {
+      families: {
+        'Bebas+Neue': true,
+        'Titillium+Web': {
+          ital: [400],
+          wght: [300, 400, 600, 700]
+        }
+      },
+      display: 'swap',
+      download:true,
+      base64:true,
+
+    }],
     ['@nuxtjs/robots', {
       UserAgent: 'Googlebot',
       Disallow: '/wp-admin/',
@@ -120,7 +127,7 @@ export default {
     }],
     '@nuxtjs/sitemap',
   ],
-  sitemap:{
+  sitemap: {
     hostname: 'https://www.raisinlove.com',
   },
   /*
