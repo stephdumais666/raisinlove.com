@@ -46,7 +46,7 @@
         >second BGC Anthology</a>.
       </p>
       <p>He makes regular appearances in small press fairs, comic conventions and horror events in Canada each year to promote his work and the BGC catalog and hopes to participate in more events across the border.</p>
-      <p>He is currently working on his new title, Renegade XL-900, a gritty cyberpunk story.</p>
+      <p>He is currently working on new titles, Renegade XL-900 and Slaughtered Kingdom.</p>
       <p>
         Always
         <nuxt-link to="/contact">easy to reach</nuxt-link>, he is available for commissions.
