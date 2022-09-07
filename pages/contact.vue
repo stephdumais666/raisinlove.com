@@ -63,7 +63,7 @@ export default {
             document.querySelector(".success").classList.add("show");
           },
           (error) => {
-            console.log("FAILED...", error);
+            console.log("FAILED....", error);
             document
               .querySelector('input[type="submit"]')
               .classList.remove("loading");
