@@ -1,32 +1,5 @@
-# Headless Wordpress on the JAMstack
+# Vue 3 + TypeScript + Vite
 
-> _A quick template to get you started using Headless WordPress_
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-### Deploy this Template
-
-Click the "Deploy to Netlify" button, and you can configure it to fit your needs.
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-labs/headless-wp-nuxt?utm_source=github&utm_medium=headlesswp-sd&utm_campaign=devex)
-
-![Headless WordPress Template Preview](https://i.ibb.co/4wkXsxj/fullpreview-smashing.png "Template preview")
-
-An [article explaining how we set this all up is available on Smashing Magazine](https://www.smashingmagazine.com/2020/02/headless-wordpress-site-jamstack/).
-
-## Build Setup
-
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
