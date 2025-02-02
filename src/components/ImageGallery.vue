@@ -82,7 +82,7 @@ onMounted(() => {
     <header class="sticky-header">
       <div class="header-content">
         <div class="header-title">
-          <h1>RAISINLOVE.COM - STEPH DUMAIS</h1>
+          <h1><span>RAISINLOVE.COM</span>  <span>STEPH DUMAIS</span></h1>
           <!--p>{{ images.length }} images found</p-->
         </div>
         <div class="social-links">
@@ -162,6 +162,9 @@ onMounted(() => {
   margin: 0;
   font-size: 1.1rem;
 }
+
+.header-title h1 span{white-space:nowrap;}
+.header-title h1 spanLlast-child{opacity: 0.7;}
 
 .social-links {
   display: flex;
