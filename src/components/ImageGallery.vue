@@ -164,7 +164,7 @@ onMounted(() => {
 }
 
 .header-title h1 span{white-space:nowrap;}
-.header-title h1 spanLlast-child{opacity: 0.7;}
+.header-title h1 span:last-child{opacity: 0.5;}
 
 .social-links {
   display: flex;
